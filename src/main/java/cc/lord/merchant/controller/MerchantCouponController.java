@@ -37,7 +37,7 @@ public class MerchantCouponController extends BaseController {
         return "merchant/coupon";
     }
 
-    @Log("获取商户优惠列表信息")
+    @Log("获取优惠列表信息")
     @RequestMapping("list")
     @RequiresPermissions("coupon:list")
     @ResponseBody
@@ -46,6 +46,20 @@ public class MerchantCouponController extends BaseController {
         List<MerchantCoupon> list = this.merchantCouponService.findMerchantCouponList(merchantCoupon, request);
         PageInfo<MerchantCoupon> pageInfo = new PageInfo<>(list);
         return getDataTable(pageInfo);
+    }
+
+    @Log("获取商户优惠券列表")
+    @RequestMapping("mchCouponList")
+    @ResponseBody
+    public ResponseBo getMerchantCouponByMchId(Long mchId){
+        try {
+            List<MerchantCoupon> list = this.merchantCouponService.findMerchantCouponByMchId(mchId);
+            return ResponseBo.ok(list);
+        }catch (Exception e){
+            log.error("获取商户优惠失败", e);
+            return ResponseBo.error("获取商户优惠失败，请联系网站管理员！");
+        }
+
     }
 
     @Log("获取优惠券详情")

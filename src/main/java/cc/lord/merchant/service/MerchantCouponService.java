@@ -20,4 +20,5 @@ public interface MerchantCouponService extends IService<MerchantCoupon> {
     void notThroughMerchantCoupon(MerchantCoupon merchantCoupon);
 
     List<MerchantCoupon> findMerchantCouponByMchId(Long mchId);
+
 }
