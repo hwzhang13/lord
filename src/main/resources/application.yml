@@ -97,8 +97,10 @@ spring:
   boot:
     admin:
       client:
-        url: http://localhost:8081
-        username: mrbird
+        instance:
+          service-base-url: http://localhost:8080
+        url: http://localhost:8080
+        username: admin
         password: 123456
   application:
     name: febs
@@ -106,7 +108,7 @@ spring:
 info:
   app:
     name: "febs"
-    description: "spring boot&shiro 权限管理系统"
+    description: "管控系统"
     version: "2.0"
     spring-boot-version: "2.0.4.RELEASE"
 
@@ -133,7 +135,7 @@ mybatis:
   configuration:
     jdbc-type-for-null: null
 
-#mappers 多个接口时逗号隔开
+#mappers
 mapper:
   mappers: cc.lord.common.config.MyMapper
   not-empty: false

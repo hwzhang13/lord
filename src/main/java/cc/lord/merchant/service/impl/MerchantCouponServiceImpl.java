@@ -32,7 +32,7 @@ public class MerchantCouponServiceImpl extends BaseService<MerchantCoupon> imple
         try {
             Example example = new Example(SysLog.class);
             Example.Criteria criteria = example.createCriteria();
-            criteria.andCondition("COUPON_DELETE=", 1);
+            criteria.andCondition("COUPON_DELETE=", 0);
             if (null!=merchantCoupon.getCouponStatus()) {
                 criteria.andCondition("COUPON_STATUS=", merchantCoupon.getCouponStatus());
             }

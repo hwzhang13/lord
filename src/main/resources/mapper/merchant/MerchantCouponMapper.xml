@@ -22,6 +22,7 @@
     <result column="COUPON_DELETE" jdbcType="INTEGER" property="couponDelete" />
     <result column="COUPON_DISABLE" jdbcType="INTEGER" property="couponDisable"/>
     <result column="COUPON_COMMENTS" jdbcType="VARCHAR" property="couponComments"/>
+    <result column="COUPON_EXPIRE" javaType="INTEGER" property="couponExpire"/>
   </resultMap>
 
 

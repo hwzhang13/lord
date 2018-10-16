@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
 
-    <contextName>sms</contextName>
+    <contextName>lord</contextName>
 
     <property name="log.path" value="log" />
     <property name="log.maxHistory" value="15" />

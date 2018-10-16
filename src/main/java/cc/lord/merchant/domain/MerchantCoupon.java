@@ -96,6 +96,20 @@ public class MerchantCoupon {
     @Column(name = "COUPON_DISABLE")
     private String couponDisable;
 
+    /**
+     * 0未过期 1过期
+     */
+    @Column(name = "COUPON_EXPIRE")
+    private Integer couponExpire;
+
+    public Integer getCouponExpire() {
+        return couponExpire;
+    }
+
+    public void setCouponExpire(Integer couponExpire) {
+        this.couponExpire = couponExpire;
+    }
+
     public String getMchName() {
         return mchName;
     }
