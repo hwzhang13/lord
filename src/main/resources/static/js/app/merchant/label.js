@@ -39,11 +39,10 @@ $(function () {
             field: 'labelDisable',
             title: '操作',
             formatter: function (value, row, index) {
-                console.log(value)
                 console.log(row.labelId)
                 var $labelId=row.labelId;
-                if (value === 1) return "<a href='#'  onclick='updateLabel(\"" + $labelId + "\")'>编辑</a><a href='#' onclick='disableLabel(\""+$labelId+"\",0)'>启用</a><a href='#' onclick='deleteLabel(\""+$labelId+"\")'>删除</a>";
-                if (value === 0) return "<a href='#'  onclick='updateLabel(\"" + $labelId + "\")'>编辑</a><a href='#' onclick='disableLabel(\""+$labelId+"\",1)'>禁用</a><a href='#' onclick='deleteLabel(\""+$labelId+"\")'>删除</a>";
+                if (value === 1) return "<a href='#'  onclick='updateLabel(\"" + $labelId + "\")'>编辑</a><a href='#' shiro:hasPermission='label:disable' onclick='disableLabel(\""+$labelId+"\",0)'>启用</a><a href='#' shiro:hasPermission='label:delete' onclick='deleteLabel(\""+$labelId+"\")'>删除</a>";
+                if (value === 0) return "<a href='#'  onclick='updateLabel(\"" + $labelId + "\")'>编辑</a><a href='#' shiro:hasPermission='label:disable' onclick='disableLabel(\""+$labelId+"\",1)'>禁用</a><a href='#' shiro:hasPermission='label:delete' onclick='deleteLabel(\""+$labelId+"\")'>删除</a>";
             }
         }
 
