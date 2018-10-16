@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.lord.merchant.dao.MerchantCouponMapper">
+  <resultMap id="BaseResultMap" type="cc.lord.merchant.domain.MerchantCoupon">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="COUPON_ID" jdbcType="BIGINT" property="couponId" />
+    <result column="MCH_ID" jdbcType="BIGINT" property="mchId" />
+    <result column="MCH_NAME" jdbcType="VARCHAR" property="mchName" />
+    <result column="COUPON_TYPE" jdbcType="INTEGER" property="couponType" />
+    <result column="COUPON_AMOUNT" jdbcType="DOUBLE" property="couponAmount" />
+    <result column="COUPON_USAGE_AMOUNT" jdbcType="DOUBLE" property="couponUsageAmount" />
+    <result column="COUPON_PAYMENT_TYPE" jdbcType="INTEGER" property="couponPaymentType" />
+    <result column="COUPON_PAYMENT_TYPE_NAME" jdbcType="VARCHAR" property="couponPaymentTypeName" />
+    <result column="COUPON_QR_CODE" jdbcType="VARCHAR" property="couponQrCode" />
+    <result column="COUPON_TIME_BEGIN" jdbcType="TIMESTAMP" property="couponTimeBegin" />
+    <result column="COUPON_TIME_END" jdbcType="TIMESTAMP" property="couponTimeEnd" />
+    <result column="COUPON_CREATE_DATE" jdbcType="TIMESTAMP" property="couponCreateDate" />
+    <result column="COUPON_UPDATE_DATE" jdbcType="TIMESTAMP" property="couponUpdateDate" />
+    <result column="COUPON_STATUS" jdbcType="INTEGER" property="couponStatus" />
+    <result column="COUPON_DELETE" jdbcType="INTEGER" property="couponDelete" />
+    <result column="COUPON_DISABLE" jdbcType="INTEGER" property="couponDisable"/>
+    <result column="COUPON_COMMENTS" jdbcType="VARCHAR" property="couponComments"/>
+  </resultMap>
+
+
+  <delete id="deleteMerchantCouponById">
+    update t_merchant_coupon
+    set COUPON_DELETE=1
+    where COUPON_ID=#{couponId}
+  </delete>
+
+  <select id="selectMerchantCouponByMchId" resultMap="BaseResultMap">
+    select *
+    from t_merchant_coupon
+    where MCH_ID=#{mchId}
+  </select>
+</mapper>

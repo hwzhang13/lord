@@ -1,0 +1,161 @@
+<div class="modal fade" id="merchant-add" data-keyboard="false" data-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title pull-left" id="merchant-add-modal-title">基本信息</h3>
+            </div>
+            <div class="modal-body">
+                <form id="merchant-add-form">
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 商户名称：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="mchName" class="form-control">
+                                    <input type="text" hidden name="mchId" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 联系人：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="mchContacts" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 联系电话：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="mchContactsTelephone" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 营业执照：
+					            </span>
+                                <div class="profile__img">
+                                    <input type="file" id="inputfile" onchange="addImg()">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 营业执照号：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="mchBusinesslicenceNumbe" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <HR size="20">
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 商户图片：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="mchAddress" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 商户地址：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="mchAddress" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 类别：
+					             </span>
+                                <div class="form-group">
+                                    <select class="form-control" name="mchType">
+                                        <option value="" selected>请选择</option>
+                                        <option value="1">购物</option>
+                                        <option value="2">饮食</option>
+                                        <option value="3">娱乐</option>
+                                        <option value="4">游览</option>
+                                        <option value="5">出行</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 人均消费：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="mchPerCapitaConsume" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 联系电话：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="mchTelephone" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+					               	 营业时间：
+					            </span>
+                                <div class="form-group">
+                                    <input type="text" name="mchTelephone" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-save" id="merchant-add-button" name="save">保存</button>
+                <button type="button" class="btn btn-secondary btn-close">关闭</button>
+                <button class="btn-hide"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-src="@{js/app/merchant/merchantAdd.js}"></script>

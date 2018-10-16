@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.lord.merchant.dao.MerchantMapper">
+  <resultMap id="BaseResultMap" type="cc.lord.merchant.domain.Merchant">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="MCH_ID" jdbcType="BIGINT" property="mchId" />
+    <result column="MCH_NAME" jdbcType="VARCHAR" property="mchName" />
+    <result column="MCH_CONTACTS" jdbcType="VARCHAR" property="mchContacts" />
+    <result column="MCH_CONTACTS_TELEPHONE" jdbcType="VARCHAR" property="mchContactsTelephone" />
+    <result column="MCH_BUSINESSLICENCE" jdbcType="VARCHAR" property="mchBusinesslicence" />
+    <result column="MCH_BUSINESSLICENCE_NUMBE" jdbcType="VARCHAR" property="mchBusinesslicenceNumbe" />
+    <result column="MCH_IMG" jdbcType="VARCHAR" property="mchImg" />
+    <result column="MCH_TYPE" jdbcType="INTEGER" property="mchType" />
+    <result column="MCH_TELEPHONE" jdbcType="VARCHAR" property="mchTelephone" />
+    <result column="MCH_ADDRESS" jdbcType="VARCHAR" property="mchAddress" />
+    <result column="MCH_WEEKDAY_BEGIN" jdbcType="VARCHAR" property="mchWeekdayBegin" />
+    <result column="MCH_WEEKDAY_END" jdbcType="VARCHAR" property="mchWeekdayEnd" />
+    <result column="MCH_WEEKEND_BEGIN" jdbcType="VARCHAR" property="mchWeekendBegin" />
+    <result column="MCH_WEEKEND_END" jdbcType="VARCHAR" property="mchWeekendEnd" />
+    <result column="MCH_PER_CAPITA_CONSUME" jdbcType="VARCHAR" property="mchPerCapitaConsume" />
+    <result column="MCH_STATUS" jdbcType="INTEGER" property="mchStatus" />
+    <result column="MCH_CREATE_DATE" jdbcType="TIMESTAMP" property="mchCreateDate" />
+    <result column="MCH_UPDATE_DATE" jdbcType="TIMESTAMP" property="mchUpdateDate" />
+    <result column="MCH_DELETE" jdbcType="INTEGER" property="mchDelete" />
+    <result column="MCH_DISABLE" jdbcType="INTEGER" property="mchDisable"/>
+    <result column="MCH_COMMENTS" jdbcType="VARCHAR" property="mchComments"/>
+    <result column="MCH_MAP" jdbcType="VARCHAR" property="mchMap"/>
+  </resultMap>
+
+
+  <resultMap id="BaseResultMapVo" type="cc.lord.merchant.domain.MerchantVo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="MCH_ID" jdbcType="BIGINT" property="mchId" />
+    <result column="MCH_NAME" jdbcType="VARCHAR" property="mchName" />
+    <result column="MCH_CONTACTS" jdbcType="VARCHAR" property="mchContacts" />
+    <result column="MCH_CONTACTS_TELEPHONE" jdbcType="VARCHAR" property="mchContactsTelephone" />
+    <result column="MCH_BUSINESSLICENCE" jdbcType="VARCHAR" property="mchBusinesslicence" />
+    <result column="MCH_BUSINESSLICENCE_NUMBE" jdbcType="VARCHAR" property="mchBusinesslicenceNumbe" />
+    <result column="MCH_IMG" jdbcType="VARCHAR" property="mchImg" />
+    <result column="MCH_TYPE" jdbcType="INTEGER" property="mchType" />
+    <result column="MCH_TELEPHONE" jdbcType="VARCHAR" property="mchTelephone" />
+    <result column="MCH_ADDRESS" jdbcType="VARCHAR" property="mchAddress" />
+    <result column="MCH_WEEKDAY_BEGIN" jdbcType="VARCHAR" property="mchWeekdayBegin" />
+    <result column="MCH_WEEKDAY_END" jdbcType="VARCHAR" property="mchWeekdayEnd" />
+    <result column="MCH_WEEKEND_BEGIN" jdbcType="VARCHAR" property="mchWeekendBegin" />
+    <result column="MCH_WEEKEND_END" jdbcType="VARCHAR" property="mchWeekendEnd" />
+    <result column="MCH_PER_CAPITA_CONSUME" jdbcType="VARCHAR" property="mchPerCapitaConsume" />
+    <result column="MCH_STATUS" jdbcType="INTEGER" property="mchStatus" />
+    <result column="MCH_CREATE_DATE" jdbcType="TIMESTAMP" property="mchCreateDate" />
+    <result column="MCH_UPDATE_DATE" jdbcType="TIMESTAMP" property="mchUpdateDate" />
+    <result column="MCH_DELETE" jdbcType="INTEGER" property="mchDelete" />
+    <result column="MCH_DISABLE" jdbcType="INTEGER" property="mchDisable"/>
+    <result column="MCH_COMMENTS" jdbcType="VARCHAR" property="mchComments"/>
+    <result column="MCH_MAP" jdbcType="VARCHAR" property="mchMap"/>
+
+    <collection property="merchantCoupons" column="MCH_ID" select="cc.lord.merchant.dao.MerchantCouponMapper.selectMerchantCouponByMchId"/>
+    <collection property="mchLabelVos" column="MCH_ID" select="cc.lord.merchant.dao.MchLabelMapper.findMchLabelVoList"/>
+  </resultMap>
+
+  <select id="findMerchantList" resultMap="BaseResultMapVo">
+    select *
+    from t_merchant
+    where MCH_DELETE=0
+    <if test="mchName !=null and mchName!='' ">
+      and mchName like #{mchName}
+    </if>
+    <if test="mchStatus !=null">
+      and MCH_STATUS=#{mchStatus}
+    </if>
+    <if test="mchType !=null">
+      and MCH_TYPE=#{mchType}
+    </if>
+
+    order by MCH_CREATE_DATE desc
+  </select>
+
+  <select id="findMerchantById" resultMap="BaseResultMapVo">
+    select *
+    from t_merchant
+  </select>
+
+  <delete id="deleteMerchantById" >
+    update t_merchant
+    set MCH_DELETE=1
+    where MCH_ID=#{mchId}
+  </delete>
+
+  <delete id="updateMerchantStatusById" >
+    update t_merchant
+    set MCH_STATUS=#{status}
+    <if test="mchComments !=null">
+      ,MCH_COMMENTS=#{mchComments}
+    </if>
+    where MCH_ID=#{mchId}
+  </delete>
+</mapper>

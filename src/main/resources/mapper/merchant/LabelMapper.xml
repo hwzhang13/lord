@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.lord.merchant.dao.LabelMapper">
+  <resultMap id="BaseResultMap" type="cc.lord.merchant.domain.Label">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="LABEL_ID" jdbcType="BIGINT" property="labelId" />
+    <result column="LABEL_TYPE" jdbcType="INTEGER" property="labelType" />
+    <result column="LABEL_NAME" jdbcType="VARCHAR" property="labelName" />
+    <result column="LABEL_CREATE_DATE" jdbcType="TIMESTAMP" property="labelCreateDate" />
+    <result column="LABEL_UPDATE_DATE" jdbcType="TIMESTAMP" property="labelUpdateDate" />
+    <result column="LABEL_DISABLE" jdbcType="INTEGER" property="labelDisable" />
+    <result column="LABEL_STATUS" jdbcType="INTEGER" property="labelStatus" />
+    <result column="LABEL_DELETE" jdbcType="INTEGER" property="labelDelete" />
+  </resultMap>
+</mapper>
