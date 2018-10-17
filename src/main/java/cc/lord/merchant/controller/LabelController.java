@@ -8,11 +8,13 @@ import cc.lord.merchant.domain.Label;
 import cc.lord.merchant.service.LabelService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,8 +34,7 @@ public class LabelController extends BaseController {
 
     @RequestMapping
     @RequiresPermissions("label:list")
-    private String index(){
-
+    public String index(){
         return "merchant/label";
     }
 
@@ -66,6 +67,11 @@ public class LabelController extends BaseController {
     @RequestMapping("deleteLabel")
     @RequiresPermissions("label:delete")
     public ResponseBo deleteLabel(Long labelId){
+
+        if (null==labelId){
+            log.error("删除标签:","参数错误");
+            return ResponseBo.error("参数错误");
+        }
         try {
             Label label=new Label();
             label.setLabelId(labelId);
@@ -152,6 +158,14 @@ public class LabelController extends BaseController {
     @ResponseBody
     public ResponseBo addLabel(Label label){
 
+        if (null==label.getLabelType()){
+            log.error("添加标签:","标签分类未选择");
+            return ResponseBo.error("标签分类未选择");
+        }
+        if (StringUtils.isEmpty(label.getLabelName())){
+            log.error("添加标签:","标签名称未填写");
+            return ResponseBo.error("标签名称未填写");
+        }
         try {
             this.labelService.addLabel(label);
             return ResponseBo.ok();

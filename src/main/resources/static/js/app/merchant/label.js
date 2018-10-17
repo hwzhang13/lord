@@ -3,6 +3,7 @@ $(function () {
     var settings = {
         url: ctx + "merchant/label/list",
         pageSize: 10,
+        singleSelect: true,
         queryParams: function (params) {
             return {
                 pageSize: params.limit,
@@ -11,6 +12,8 @@ $(function () {
             };
         },
         columns: [{
+            checkbox:true
+        },{
             field: 'labelId',
             visible: false
         }, {
@@ -35,17 +38,7 @@ $(function () {
                 else if (value === 0) return '启用';
                 else return '其他';
             }
-        }, {
-            field: 'labelDisable',
-            title: '操作',
-            formatter: function (value, row, index) {
-                console.log(row.labelId)
-                var $labelId=row.labelId;
-                if (value === 1) return "<a href='#'  onclick='updateLabel(\"" + $labelId + "\")'>编辑</a><a href='#' shiro:hasPermission='label:disable' onclick='disableLabel(\""+$labelId+"\",0)'>启用</a><a href='#' shiro:hasPermission='label:delete' onclick='deleteLabel(\""+$labelId+"\")'>删除</a>";
-                if (value === 0) return "<a href='#'  onclick='updateLabel(\"" + $labelId + "\")'>编辑</a><a href='#' shiro:hasPermission='label:disable' onclick='disableLabel(\""+$labelId+"\",1)'>禁用</a><a href='#' shiro:hasPermission='label:delete' onclick='deleteLabel(\""+$labelId+"\")'>删除</a>";
-            }
         }
-
         ]
     };
 
@@ -62,13 +55,25 @@ function refresh() {
 }
 
 //删除标签
-function deleteLabel(labelId) {
+function deleteLabel() {
+    var selected = $("#labelTable").bootstrapTable('getSelections');
+    var selected_length = selected.length;
+    var contain = false;
+    if (!selected_length) {
+        $MB.n_warning('请勾选需要删除的标签！');
+        return;
+    }
+    var labelIds = "";
+    for (var i = 0; i < selected_length; i++) {
+        labelIds += selected[i].labelId;
+        if (i !== (selected_length - 1)) labelIds += ",";
 
+    }
     $MB.confirm({
         text: "确定删除选中标签？",
         confirmButtonText: "确定删除"
     }, function () {
-        $.post(ctx + 'merchant/label/deleteLabel', {"labelId": labelId}, function (r) {
+        $.post(ctx + 'merchant/label/deleteLabel', {"labelId": labelIds}, function (r) {
             if (r.code === 0) {
                 $MB.n_success(r.msg);
                 refresh();
@@ -79,12 +84,27 @@ function deleteLabel(labelId) {
     });
 }
 
-function disableLabel(labelId,labelDisable) {
+function disableLabel(labelDisable) {
+    if (labelDisable==0){
+
+    }
+    var selected = $("#labelTable").bootstrapTable('getSelections');
+    var selected_length = selected.length;
+    if (!selected_length) {
+        $MB.n_warning('请勾选需要操作的标签！');
+        return;
+    }
+    var labelIds = "";
+    for (var i = 0; i < selected_length; i++) {
+        labelIds += selected[i].labelId;
+        if (i !== (selected_length - 1)) labelIds += ",";
+
+    }
     $MB.confirm({
         text: "确定操作选中标签？",
         confirmButtonText: "确定"
     }, function () {
-        $.post(ctx + 'merchant/label/disableLabel', {"labelId": labelId,"labelDisable":labelDisable}, function (r) {
+        $.post(ctx + 'merchant/label/disableLabel', {"labelId": labelIds,"labelDisable":labelDisable}, function (r) {
             if (r.code === 0) {
                 $MB.n_success(r.msg);
                 refresh();
@@ -97,7 +117,7 @@ function disableLabel(labelId,labelDisable) {
 }
 
 function exportUserExcel() {
-    $.post(ctx + "user/excel", $(".user-table-form").serialize(), function (r) {
+    $.post(ctx + "user/excel", $(".label-table-form").serialize(), function (r) {
         if (r.code === 0) {
             window.location.href = "common/download?fileName=" + r.msg + "&delete=" + true;
         } else {

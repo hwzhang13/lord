@@ -113,6 +113,10 @@ public class MerchantController extends BaseController {
     @RequestMapping("deleteMerchant")
     @ResponseBody
     public ResponseBo removeMerchant(Long merchantId){
+        if (null==merchantId){
+            log.error("删除商户","参数错误");
+            return ResponseBo.error("参数错误");
+        }
         try {
             this.merchantService.removeMerchant(merchantId);
             return ResponseBo.ok();

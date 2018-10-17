@@ -8,6 +8,7 @@ import cc.lord.merchant.domain.MerchantCoupon;
 import cc.lord.merchant.service.MerchantCouponService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,6 +81,10 @@ public class MerchantCouponController extends BaseController {
     @RequestMapping("deleteMerchantCoupon")
     @RequiresPermissions("coupon:delete")
     public ResponseBo deleteMerchantCoupon(Long couponId){
+        if (null==couponId){
+            log.error("删除商户优惠券","参数错误");
+            return ResponseBo.error("参数错误");
+        }
         try {
             this.merchantCouponService.deleteMerchantCouponById(couponId);
             return ResponseBo.ok();
@@ -163,6 +168,39 @@ public class MerchantCouponController extends BaseController {
     @RequestMapping("addMerchantCoupon")
     @ResponseBody
     public ResponseBo addMerchantCoupon(MerchantCoupon merchantCoupon){
+
+        if (null==merchantCoupon.getMchId()){
+            log.error("添加商户优惠:","商户ID错误");
+            return ResponseBo.error("商户ID错误");
+        }
+        if (null==merchantCoupon.getCouponType()){
+            log.error("添加商户优惠:","商户类型错误");
+            return ResponseBo.error("商户类型错误");
+        }
+        if (null==merchantCoupon.getCouponAmount()){
+            log.error("添加商户优惠:","优惠金额错误");
+            return ResponseBo.error("优惠金额错误");
+        }
+        if (null==merchantCoupon.getCouponUsageAmount()){
+            log.error("添加商户优惠:","使用金额错误");
+            return ResponseBo.error("使用金额错误");
+        }
+        if (StringUtils.isEmpty(merchantCoupon.getCouponQrCode())){
+            log.error("添加商户优惠:","优惠二维码错误");
+            return ResponseBo.error("优惠二维码错误");
+        }
+        if (null==merchantCoupon.getCouponTimeEnd()){
+            log.error("添加商户优惠:","优惠结束时间错误");
+            return ResponseBo.error("优惠结束时间错误");
+        }
+        if (null==merchantCoupon.getCouponTimeBegin()){
+            log.error("添加商户优惠:","优惠开始时间错误");
+            return ResponseBo.error("优惠开始时间错误");
+        }
+        if (merchantCoupon.getCouponTimeEnd().getTime()<=merchantCoupon.getCouponTimeBegin().getTime()){
+            log.error("添加商户优惠:","优惠结束时间不能小于开始时间");
+            return ResponseBo.error("优惠结束时间不能小于开始时间");
+        }
 
         try {
             this.merchantCouponService.save(merchantCoupon);

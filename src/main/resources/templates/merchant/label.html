@@ -4,7 +4,12 @@
         <div class="table-responsive">
             <div id="data-table_wrapper" class="dataTables_wrapper">
                 <div class="dataTables_buttons hidden-sm-down actions">
+                    <button  class="badge badge-success" onclick="disableLabel(0)">启用</button>
+                    <button  class="badge badge-warning" onclick="disableLabel(1)">禁用</button>
                     <span class="actions__item zmdi zmdi-refresh-alt" onclick="refresh()" title="刷新" />
+                    <span  class="actions__item zmdi zmdi-plus" data-toggle="modal" data-target="#label-add" title="添加标签" />
+                    <span  class="actions__item zmdi zmdi-delete" onclick="deleteLabel()" title="删除标签" />
+                    <span  class="actions__item zmdi zmdi-border-color" onclick="updateLabel()" title="编辑标签" />
                     <div class="dropdown actions__item">
                         <i data-toggle="dropdown" class="zmdi zmdi-download"> </i>
                         <ul class="dropdown-menu dropdown-menu-right">
@@ -41,5 +46,5 @@
         </div>
     </div>
 </div>
-<script data-th-src="@{js/app/merchant/label.js}"></script>
+<script  data-th-src="@{js/app/merchant/label.js}"></script>
 <script data-th-src="@{js/app/merchant/labelEdit.js}"></script>

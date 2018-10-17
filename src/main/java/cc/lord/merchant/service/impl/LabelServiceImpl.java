@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -47,6 +48,7 @@ public class LabelServiceImpl extends BaseService<Label> implements LabelService
 
     @Override
     public void addLabel(Label label) {
+        label.setLabelCreateDate(new Date());
         try {
             this.labelMapper.insertSelective(label);
         }catch (Exception e){
