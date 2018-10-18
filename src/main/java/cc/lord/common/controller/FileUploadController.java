@@ -40,9 +40,9 @@ public class FileUploadController {
             file.transferTo(new File(pathRoot+path));
         }
         System.out.println(path);
-        request.setAttribute("imagesPath", path);
+        request.setAttribute("imagesPath", pathRoot+path);
         Map result=new HashMap();
-        result.put("img",path);
+        result.put("img","http://localhost:8080/"+path);
         return ResponseBo.ok(result);
     }
 }

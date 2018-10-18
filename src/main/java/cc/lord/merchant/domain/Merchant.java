@@ -94,7 +94,7 @@ public class Merchant {
     private String mchPerCapitaConsume;
 
     /**
-     * 0 待审核 1宸查€氳繃  2鏈€氳繃
+     * 0 待审核 1已通过  2未通过
      */
     @Column(name = "MCH_STATUS")
     private Integer mchStatus;
@@ -121,7 +121,7 @@ public class Merchant {
     private String mchComments;
 
     @Column(name = "MCH_DISABLE")
-    private String mchDisable;
+    private Integer mchDisable;
 
     @Column(name = "MCH_MAP")
     private String mchMap;
@@ -142,11 +142,11 @@ public class Merchant {
         this.mchComments = mchComments;
     }
 
-    public String getMchDisable() {
+    public Integer getMchDisable() {
         return mchDisable;
     }
 
-    public void setMchDisable(String mchDisable) {
+    public void setMchDisable(Integer mchDisable) {
         this.mchDisable = mchDisable;
     }
 

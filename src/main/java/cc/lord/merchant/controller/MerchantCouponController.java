@@ -203,7 +203,7 @@ public class MerchantCouponController extends BaseController {
         }
 
         try {
-            this.merchantCouponService.save(merchantCoupon);
+            this.merchantCouponService.modifyMerchantCoupon(merchantCoupon);
             return ResponseBo.ok();
         }catch (Exception e){
             log.error("添加商户信息", e);

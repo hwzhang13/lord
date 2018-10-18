@@ -11,19 +11,19 @@ import java.util.List;
 
 public interface MerchantService extends IService<Merchant> {
 
-    List<MerchantVo> findMerchantList(Merchant merchant, QueryRequest request);
+    List<MerchantVo> findMerchantList(Merchant merchant, QueryRequest request)throws Exception;
 
-    MerchantVo findMerchantById(Long merchantId);
+    MerchantVo findMerchantById(Long merchantId)throws Exception;
 
-    void addMerchant(MerchantVo merchant);
+    void addMerchant(MerchantVo merchant)throws Exception;
 
-    void modifyMerchant(MerchantVo merchant);
+    void modifyMerchant(MerchantVo merchant)throws Exception;
 
-    void removeMerchant(Long merchantId);
+    void removeMerchant(Long merchantId)throws Exception;
 
-    void auditedMerchant(Merchant merchant);
+    void auditedMerchant(Merchant merchant)throws Exception;
 
-    void notThroughMerchant(Merchant merchant);
+    void notThroughMerchant(Merchant merchant)throws Exception;
 
-    void disableMerchant(Merchant merchant);
+    void disableMerchant(Merchant merchant)throws Exception;
 }

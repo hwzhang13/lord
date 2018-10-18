@@ -74,13 +74,16 @@
     <if test="mchType !=null">
       and MCH_TYPE=#{mchType}
     </if>
+    <if test="mchDisable !=null">
+      and MCH_DISABLE=#{mchDisable}
+    </if>
 
     order by MCH_CREATE_DATE desc
   </select>
 
   <select id="findMerchantById" resultMap="BaseResultMapVo">
     select *
-    from t_merchant
+    from t_merchant where MCH_ID=#{mchId}
   </select>
 
   <delete id="deleteMerchantById" >

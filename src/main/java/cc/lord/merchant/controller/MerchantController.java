@@ -4,6 +4,7 @@ import cc.lord.common.annotation.Log;
 import cc.lord.common.controller.BaseController;
 import cc.lord.common.domain.QueryRequest;
 import cc.lord.common.domain.ResponseBo;
+import cc.lord.common.util.MapUtil;
 import cc.lord.merchant.domain.Merchant;
 import cc.lord.merchant.domain.MerchantVo;
 import cc.lord.merchant.service.MerchantService;
@@ -18,6 +19,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -193,6 +196,39 @@ public class MerchantController extends BaseController {
             log.error("禁用商户:",e);
             return ResponseBo.error("禁用商户，请联系网站管理员！");
         }
+    }
+
+
+    @Log("查询老成都商户列表")
+    @RequestMapping("mchList")
+    @ResponseBody
+    public ResponseBo getMchList(){
+
+        List<MerchantVo> merchantVos=null;
+        try {
+            Merchant merchantParmer=new Merchant();
+            merchantParmer.setMchStatus(1);
+            merchantParmer.setMchDisable(0);
+            merchantVos=merchantService.findMerchantList(merchantParmer,null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseBo.error("查询商户异常");
+        }
+        List<Map> maps=new ArrayList<Map>();
+        Map map=new HashMap();
+        for (MerchantVo merchantVo:merchantVos) {
+
+            if(map.containsKey(merchantVo.getMchType())){
+                List<MerchantVo> merchantVos1= (List<MerchantVo>) map.get(merchantVo.getMchType());
+                merchantVos1.add(merchantVo);
+            }else {
+                List<MerchantVo> merchantVos1=new ArrayList<>();
+                merchantVos1.add(merchantVo);
+                map.put(merchantVo.getMchType(),merchantVos1);
+            }
+        }
+        map.put("count",merchantVos.size());
+        return ResponseBo.ok(MapUtil.sortMapByKey(map));
     }
 
 }

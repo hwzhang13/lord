@@ -58,7 +58,7 @@ public class CouponTask {
                 log.info("执行优惠过期任务:当前优惠券已过期");
                 try {
                     merchantCoupon.setCouponExpire(EXPIRE);
-                    merchantCouponService.save(merchantCoupon);
+                    merchantCouponService.modifyMerchantCoupon(merchantCoupon);
                 }catch (Exception e){
                     e.printStackTrace();
                     log.error("执行优惠过期任务:修改优惠券状态异常");

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class MerchantServiceImpl extends BaseService<Merchant> implements Mercha
     private MchLabelService mchLabelService;
 
     @Override
-    public List<MerchantVo> findMerchantList(Merchant merchant, QueryRequest request) {
+    public List<MerchantVo> findMerchantList(Merchant merchant, QueryRequest request) throws Exception{
         if (StringUtils.isNotBlank(merchant.getMchName())){
             merchant.setMchName("%"+merchant.getMchName()+"%");
         }
@@ -49,121 +50,121 @@ public class MerchantServiceImpl extends BaseService<Merchant> implements Mercha
             merchantVos=merchantMapper.findMerchantList(merchant);
         }catch (Exception e){
             log.error("获取商户失败", e);
-            return new ArrayList<>();
+            throw new Exception("查询商户异常");
         }
-        /*try {
-            for (MerchantVo merchantVo:merchantVos) {
-                //商户优惠
-                merchantVo.setMerchantCoupons(merchantCouponService.findMerchantCouponByMchId(merchantVo.getMchId()));
-
-                merchantVo.setMchLabelVos(mchLabelService.findMchLabelVoList(merchantVo.getMchId()));
-                merchantVos.add(merchantVo);
-            }
-
-        } catch (Exception e) {
-            log.error("获取商户失败", e);
-            return new ArrayList<>();
-        }*/
         return merchantVos;
     }
 
     @Override
-    public MerchantVo findMerchantById(Long merchantId) {
+    public MerchantVo findMerchantById(Long merchantId)throws Exception {
 
-        List<MerchantCoupon> merchantCoupons=null;
+        /*List<MerchantCoupon> merchantCoupons=null;
         try {
             merchantCoupons=merchantCouponService.findMerchantCouponByMchId(merchantId);
         }catch (Exception e){
             log.error("error", e);
             return new MerchantVo();
-        }
+        }*/
         try {
             MerchantVo merchantVo=this.merchantMapper.findMerchantById(merchantId);
-            merchantVo.setMerchantCoupons(merchantCoupons);
-            merchantVo.setMchLabelVos(mchLabelService.findMchLabelVoList(merchantId));
+            /*merchantVo.setMerchantCoupons(merchantCoupons);
+            merchantVo.setMchLabelVos(mchLabelService.findMchLabelVoList(merchantId));*/
             return merchantVo;
         } catch (Exception e) {
             log.error("error", e);
-            return new MerchantVo();
+            throw new Exception("查询商户异常");
         }
 
     }
 
     @Override
-    public void addMerchant(MerchantVo merchant) {
+    public void addMerchant(MerchantVo merchant) throws Exception{
         try {
             merchant.setMchCreateDate(new Date());
             this.merchantMapper.insert(merchant);
         }catch (Exception e){
             log.error("error", e);
+            throw new Exception("商户添加错误");
         }
-
-        for (MchLabel mchLabel:merchant.getMchLabelVos()) {
-            try {
-                mchLabel.setMchId(merchant.getMchId());
-                this.mchLabelService.addMchLabel(mchLabel);
-            }catch (Exception e){
-                log.error("error", e);
+        if (!CollectionUtils.isEmpty(merchant.getMchLabelVos())){
+            for (MchLabel mchLabel:merchant.getMchLabelVos()) {
+                try {
+                    mchLabel.setMchId(merchant.getMchId());
+                    this.mchLabelService.addMchLabel(mchLabel);
+                }catch (Exception e){
+                    log.error("error", e);
+                    throw new Exception("商户添加错误");
+                }
             }
         }
+
     }
 
     @Override
-    public void modifyMerchant(MerchantVo merchant) {
+    public void modifyMerchant(MerchantVo merchant)throws Exception {
         try {
             this.merchantMapper.updateByPrimaryKeySelective(merchant);
         }catch (Exception e){
             log.error("error",e);
+            throw new Exception("商户修改错误");
         }
 
         try {
             this.mchLabelService.removeLabel(merchant.getMchId());
         }catch (Exception e){
             log.error("error",e);
+            throw new Exception("商户修改错误");
         }
-
-        for (MchLabel mchLabel:merchant.getMchLabelVos()) {
-            try {
-                this.mchLabelService.addMchLabel(mchLabel);
-            }catch (Exception e){
-                log.error("error", e);
+        if (!CollectionUtils.isEmpty(merchant.getMchLabelVos())){
+            for (MchLabel mchLabel:merchant.getMchLabelVos()) {
+                try {
+                    mchLabel.setMchId(merchant.getMchId());
+                    this.mchLabelService.addMchLabel(mchLabel);
+                }catch (Exception e){
+                    log.error("error", e);
+                    throw new Exception("商户修改错误");
+                }
             }
         }
     }
 
     @Override
-    public void removeMerchant(Long merchantId) {
+    public void removeMerchant(Long merchantId) throws Exception{
         try {
             this.merchantMapper.deleteMerchantById(merchantId);
         }catch (Exception e){
             log.error("error",e);
+            throw new Exception("删除商户异常");
         }
     }
 
     @Override
-    public void auditedMerchant(Merchant merchant) {
+    public void auditedMerchant(Merchant merchant)throws Exception{
         try {
             this.merchantMapper.updateMerchantStatusById(merchant.getMchId(),merchant.getMchStatus(),merchant.getMchComments());
         }catch (Exception e){
             log.error("error",e);
+            throw new Exception("审核商户异常");
         }
     }
 
     @Override
-    public void notThroughMerchant(Merchant merchant) {
+    public void notThroughMerchant(Merchant merchant)throws Exception {
         try {
             this.merchantMapper.updateMerchantStatusById(merchant.getMchId(),merchant.getMchStatus(),merchant.getMchComments());
         }catch (Exception e){
             log.error("error",e);
+            throw new Exception("审核商户异常");
         }
     }
 
     @Override
-    public void disableMerchant(Merchant merchant) {
+    public void disableMerchant(Merchant merchant)throws Exception {
         try {
             this.merchantMapper.updateByPrimaryKeySelective(merchant);
         }catch (Exception e){
             log.error("error",e);
+            throw new Exception("商户操作异常");
         }
     }
 }

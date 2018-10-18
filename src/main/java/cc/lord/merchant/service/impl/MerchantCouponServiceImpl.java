@@ -92,4 +92,13 @@ public class MerchantCouponServiceImpl extends BaseService<MerchantCoupon> imple
             return new ArrayList<>();
         }
     }
+
+    @Override
+    public void modifyMerchantCoupon(MerchantCoupon merchantCoupon) {
+        try {
+            this.merchantCouponMapper.updateByPrimaryKeySelective(merchantCoupon);
+        }catch (Exception e){
+            log.error("error", e);
+        }
+    }
 }
