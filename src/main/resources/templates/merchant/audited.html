@@ -1,0 +1,53 @@
+<div class="card">
+    <div data-th-include="merchant/merchantView"></div>
+    <div class="card-block">
+        <div class="table-responsive">
+            <div id="data-table_wrapper" class="dataTables_wrapper">
+                <div class="dataTables_buttons hidden-sm-down actions">
+                    <span class="actions__item zmdi zmdi-search" onclick="search()" title="搜索" />
+                    <span class="actions__item zmdi zmdi-refresh-alt" onclick="refresh()" title="刷新" />
+                    <span  class="actions__item zmdi zmdi-delete" onclick="deleteAudited()" title="删除优惠" />
+                    <div class="dropdown actions__item">
+                        <i data-toggle="dropdown" class="zmdi zmdi-download"> </i>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <a href="javascript:void(0)" class="dropdown-item" data-table-action="excel" onclick="exportUserExcel()">
+                                Excel (.xlsx) </a>
+                            <a href="javascript:void(0)" class="dropdown-item" data-table-action="csv" onclick="exportUserCsv()"> CSV
+                                (.csv) </a>
+                        </ul>
+                    </div>
+                </div>
+                <div id="data-table_filter" class="dataTables_filter">
+                    <form class="audited-table-form">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon"> 审核状态： </span>
+                                    <div class="form-group">
+                                        <select class="form-control" name="mchStatus" onchange="search()">
+                                            <option value="" selected>全部</option>
+                                            <option value="0">待审核</option>
+                                            <option value="1">已通过</option>
+                                            <option value="2">未通过</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon"> 商户名称： </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchName" class="form-control"> <i class="form-group__bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <table id="auditedTable" data-mobile-responsive="true" class="mb-bootstrap-table text-nowrap"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<script  data-th-src="@{js/app/merchant/audited.js}"></script>

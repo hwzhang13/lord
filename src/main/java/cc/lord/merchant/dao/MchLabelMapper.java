@@ -11,4 +11,6 @@ public interface MchLabelMapper extends MyMapper<MchLabel> {
     void removeLabelByMchId(Long mchId);
 
     List<MchLabelVo> findMchLabelVoList(Long mchId);
+
+    int insertMchLabel(MchLabel mchLabel);
 }

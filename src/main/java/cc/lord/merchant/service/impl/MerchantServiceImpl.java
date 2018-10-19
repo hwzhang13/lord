@@ -81,14 +81,17 @@ public class MerchantServiceImpl extends BaseService<Merchant> implements Mercha
     public void addMerchant(MerchantVo merchant) throws Exception{
         try {
             merchant.setMchCreateDate(new Date());
-            this.merchantMapper.insert(merchant);
+            this.merchantMapper.insertSelective(merchant);
         }catch (Exception e){
             log.error("error", e);
             throw new Exception("商户添加错误");
         }
-        if (!CollectionUtils.isEmpty(merchant.getMchLabelVos())){
-            for (MchLabel mchLabel:merchant.getMchLabelVos()) {
+        if (StringUtils.isNotBlank(merchant.getLabelVos())){
+            String[] labels=merchant.getLabelVos().split(",");
+            for (String str:labels) {
                 try {
+                    MchLabel mchLabel=new MchLabel();
+                    mchLabel.setLabelId(Long.valueOf(str));
                     mchLabel.setMchId(merchant.getMchId());
                     this.mchLabelService.addMchLabel(mchLabel);
                 }catch (Exception e){
@@ -115,9 +118,15 @@ public class MerchantServiceImpl extends BaseService<Merchant> implements Mercha
             log.error("error",e);
             throw new Exception("商户修改错误");
         }
-        if (!CollectionUtils.isEmpty(merchant.getMchLabelVos())){
-            for (MchLabel mchLabel:merchant.getMchLabelVos()) {
+
+        log.info("LabelVos:"+merchant.getLabelVos());
+        log.info("mchId:"+merchant.getMchId());
+        if (StringUtils.isNotBlank(merchant.getLabelVos())){
+            String[] labels=merchant.getLabelVos().split(",");
+            for (String str:labels) {
                 try {
+                    MchLabel mchLabel=new MchLabel();
+                    mchLabel.setLabelId(Long.valueOf(str));
                     mchLabel.setMchId(merchant.getMchId());
                     this.mchLabelService.addMchLabel(mchLabel);
                 }catch (Exception e){

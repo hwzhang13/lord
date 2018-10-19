@@ -58,13 +58,13 @@ public class MerchantCoupon {
      * 优惠开始时间
      */
     @Column(name = "COUPON_TIME_BEGIN")
-    private Date couponTimeBegin;
+    private String couponTimeBegin;
 
     /**
      * 优惠结束时间
      */
     @Column(name = "COUPON_TIME_END")
-    private Date couponTimeEnd;
+    private String couponTimeEnd;
 
     /**
      * 优惠创建时间
@@ -263,7 +263,7 @@ public class MerchantCoupon {
      *
      * @return COUPON_TIME_BEGIN - 优惠开始时间
      */
-    public Date getCouponTimeBegin() {
+    public String getCouponTimeBegin() {
         return couponTimeBegin;
     }
 
@@ -272,7 +272,7 @@ public class MerchantCoupon {
      *
      * @param couponTimeBegin 优惠开始时间
      */
-    public void setCouponTimeBegin(Date couponTimeBegin) {
+    public void setCouponTimeBegin(String couponTimeBegin) {
         this.couponTimeBegin = couponTimeBegin;
     }
 
@@ -281,7 +281,7 @@ public class MerchantCoupon {
      *
      * @return COUPON_TIME_END - 优惠结束时间
      */
-    public Date getCouponTimeEnd() {
+    public String getCouponTimeEnd() {
         return couponTimeEnd;
     }
 
@@ -290,7 +290,7 @@ public class MerchantCoupon {
      *
      * @param couponTimeEnd 优惠结束时间
      */
-    public void setCouponTimeEnd(Date couponTimeEnd) {
+    public void setCouponTimeEnd(String couponTimeEnd) {
         this.couponTimeEnd = couponTimeEnd;
     }
 

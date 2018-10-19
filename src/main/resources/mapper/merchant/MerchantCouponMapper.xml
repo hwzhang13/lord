@@ -14,8 +14,8 @@
     <result column="COUPON_PAYMENT_TYPE" jdbcType="INTEGER" property="couponPaymentType" />
     <result column="COUPON_PAYMENT_TYPE_NAME" jdbcType="VARCHAR" property="couponPaymentTypeName" />
     <result column="COUPON_QR_CODE" jdbcType="VARCHAR" property="couponQrCode" />
-    <result column="COUPON_TIME_BEGIN" jdbcType="TIMESTAMP" property="couponTimeBegin" />
-    <result column="COUPON_TIME_END" jdbcType="TIMESTAMP" property="couponTimeEnd" />
+    <result column="COUPON_TIME_BEGIN" jdbcType="VARCHAR" property="couponTimeBegin" />
+    <result column="COUPON_TIME_END" jdbcType="VARCHAR" property="couponTimeEnd" />
     <result column="COUPON_CREATE_DATE" jdbcType="TIMESTAMP" property="couponCreateDate" />
     <result column="COUPON_UPDATE_DATE" jdbcType="TIMESTAMP" property="couponUpdateDate" />
     <result column="COUPON_STATUS" jdbcType="INTEGER" property="couponStatus" />

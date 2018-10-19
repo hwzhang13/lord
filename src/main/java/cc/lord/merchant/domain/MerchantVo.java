@@ -9,9 +9,21 @@ public class MerchantVo extends Merchant {
 
     private List<MchLabelVo> mchLabelVos;
 
+    private String labelVos;
+
+
     public MerchantVo(){
 
     }
+
+    public String getLabelVos() {
+        return labelVos;
+    }
+
+    public void setLabelVos(String labelVos) {
+        this.labelVos = labelVos;
+    }
+
     public List<MchLabelVo> getMchLabelVos() {
         return mchLabelVos;
     }

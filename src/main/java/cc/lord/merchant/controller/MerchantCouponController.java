@@ -149,10 +149,10 @@ public class MerchantCouponController extends BaseController {
             log.error("审核商户优惠：","编号错误");
             return ResponseBo.error("优惠券编号错误");
         }
-        /*if (null==merchantCoupon.getCouponStatus()){
-            log.error("审核商户优惠：","状态错误");
-            return ResponseBo.error("优惠状态错误");
-        }*/
+        if (StringUtils.isNotBlank(merchantCoupon.getCouponComments())){
+            log.error("审核商户优惠：","拒绝理由未填写");
+            return ResponseBo.error("拒绝理由未填写");
+        }
         try {
             merchantCoupon.setCouponStatus(NOT_THROUGH);
             this.merchantCouponService.notThroughMerchantCoupon(merchantCoupon);
@@ -174,8 +174,8 @@ public class MerchantCouponController extends BaseController {
             return ResponseBo.error("商户ID错误");
         }
         if (null==merchantCoupon.getCouponType()){
-            log.error("添加商户优惠:","商户类型错误");
-            return ResponseBo.error("商户类型错误");
+            log.error("添加商户优惠:","优惠类型错误");
+            return ResponseBo.error("优惠类型错误");
         }
         if (null==merchantCoupon.getCouponAmount()){
             log.error("添加商户优惠:","优惠金额错误");
@@ -197,13 +197,13 @@ public class MerchantCouponController extends BaseController {
             log.error("添加商户优惠:","优惠开始时间错误");
             return ResponseBo.error("优惠开始时间错误");
         }
-        if (merchantCoupon.getCouponTimeEnd().getTime()<=merchantCoupon.getCouponTimeBegin().getTime()){
+        /*if (merchantCoupon.getCouponTimeEnd().getTime()<=merchantCoupon.getCouponTimeBegin().getTime()){
             log.error("添加商户优惠:","优惠结束时间不能小于开始时间");
             return ResponseBo.error("优惠结束时间不能小于开始时间");
-        }
+        }*/
 
         try {
-            this.merchantCouponService.modifyMerchantCoupon(merchantCoupon);
+            this.merchantCouponService.addMerchantCoupon(merchantCoupon);
             return ResponseBo.ok();
         }catch (Exception e){
             log.error("添加商户信息", e);
@@ -221,7 +221,7 @@ public class MerchantCouponController extends BaseController {
             return ResponseBo.error("优惠券编号错误");
         }
         try {
-            this.merchantCouponService.save(merchantCoupon);
+            this.merchantCouponService.modifyMerchantCoupon(merchantCoupon);
             return ResponseBo.ok();
         }catch (Exception e){
             log.error("修改商户优惠信息", e);

@@ -27,4 +27,24 @@
   	left join t_label l on(m.LABEL_ID = l.LABEL_ID)
 	where m.MCH_ID = #{mchId} and LABEL_STATUS=1 and LABEL_DELETE=0 and LABEL_DISABLE=0
   </select>
+
+  <insert id="insertMchLabel" parameterType="cc.lord.merchant.domain.MchLabel">
+    insert into t_mch_label
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="labelId != null">
+        LABEL_ID,
+      </if>
+      <if test="mchId != null">
+        MCH_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="labelId != null">
+        #{labelId,jdbcType=BIGINT},
+      </if>
+      <if test="mchId != null">
+        #{mchId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
 </mapper>

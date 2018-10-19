@@ -2,148 +2,193 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title pull-left" id="merchant-add-modal-title">基本信息</h3>
             </div>
             <div class="modal-body">
-                <form id="merchant-add-form">
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-					               	 商户名称：
-					            </span>
-                                <div class="form-group">
-                                    <input type="text" name="mchName" class="form-control">
-                                    <input type="text" hidden name="mchId" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-					               	 联系人：
-					            </span>
-                                <div class="form-group">
-                                    <input type="text" name="mchContacts" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-					               	 联系电话：
-					            </span>
-                                <div class="form-group">
-                                    <input type="text" name="mchContactsTelephone" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-					               	 营业执照：
-					            </span>
-                                <div class="profile__img">
-                                    <input type="file" id="inputfile" onchange="addImg()">
-                                </div>
+                <form id="merchant-add-form" class="form-inline">
+                    <div class="container">
+                        <h4 class="col-sm-12">基本信息</h3>
 
+                        <div class="row">
+                            <input style="display: none;" type="text" name="mchId" class="form-control mchId">
+
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         商户名称：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchName" class="form-control mchName" required>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-					               	 营业执照号：
-					            </span>
-                                <div class="form-group">
-                                    <input type="text" name="mchBusinesslicenceNumbe" class="form-control">
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         联系人：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchContacts" class="form-control mchContacts" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         联系电话：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchContactsTelephone" class="form-control mchContactsTelephone" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <HR size="20">
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-					               	 商户图片：
-					            </span>
-                                <div class="form-group">
-                                    <input type="text" name="mchAddress" class="form-control">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         营业执照：
+                                    </span>
+                                    <div class="form-group">
+                                        <div style="border:1px solid #aaa;width: 60px;min-height:60px;position: relative;">
+                                            <img onclick="addImgClick(event)" class="mchBusinesslicence" data-th-src="@{img/add.png}" style="width: 100%;float: left;">
+                                            <input onchange="addImgShow(event)" type="file" style="display: none;" accept="image/*">
+                                            <input type="text" name="mchBusinesslicence" style="display: none;" class="mchBusinesslicence" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         营业执照号：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchBusinesslicenceNumbe" class="form-control mchBusinesslicenceNumbe" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-					               	 商户地址：
-					            </span>
-                                <div class="form-group">
-                                    <input type="text" name="mchAddress" class="form-control">
+
+                        <p class="col-sm-12" style="border-top:1px solid #eee;"></p>
+                        <h4 class="col-sm-12">店铺信息</h4>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         商户图片：
+                                    </span>
+                                    <div class="form-group">
+                                        <div style="border:1px solid #aaa;width: 60px;min-height:60px;position: relative;">
+                                            <img onclick="addImgClick(event)" class="mchImg" data-th-src="@{img/add.png}" style="width: 100%;float: left;">
+                                            <input onchange="addImgShow(event)" type="file" style="display: none;" accept="image/*">
+                                            <input type="text" name="mchImg" style="display: none;" class="mchImg" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         地址图片：
+                                    </span>
+                                    <div class="form-group">
+                                        <div style="border:1px solid #aaa;width: 60px;min-height:60px;position: relative;">
+                                            <img onclick="addImgClick(event)" class="mchMap" data-th-src="@{img/add.png}" style="width: 100%;float: left;">
+                                            <input onchange="addImgShow(event)" type="file" style="display: none;" accept="image/*">
+                                            <input type="text" name="mchMap" style="display: none;" class="mchMap" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         商户地址：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchAddress" class="form-control mchAddress" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-					               	 类别：
-					             </span>
-                                <div class="form-group">
-                                    <select class="form-control" name="mchType">
-                                        <option value="" selected>请选择</option>
-                                        <option value="1">购物</option>
-                                        <option value="2">饮食</option>
-                                        <option value="3">娱乐</option>
-                                        <option value="4">游览</option>
-                                        <option value="5">出行</option>
-                                    </select>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         类别：
+                                    </span>
+                                    <div class="form-group">
+                                        <select class="form-control mchType" name="mchType" onchange="getLabelList()" required>
+                                            <option value="" selected disabled>请选择类型</option>
+                                            <option value="1">购物</option>
+                                            <option value="2">饮食</option>
+                                            <option value="3">娱乐</option>
+                                            <option value="4">游览</option>
+                                            <option value="5">出行</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         标签：
+                                    </span>
+                                    <div class="form-group checkbox-content">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         人均消费：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchPerCapitaConsume" class="form-control mchPerCapitaConsume" required>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         商户电话：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchTelephone" class="form-control mchTelephone" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-					               	 人均消费：
-					            </span>
-                                <div class="form-group">
-                                    <input type="text" name="mchPerCapitaConsume" class="form-control">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         营业时间：
+                                    </span>
+                                    <span class="input-group-addon">工作日</span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchWeekdayBegin" class="form-control mchWeekdayBegin" placeholder="开始时间" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="mchWeekdayEnd" class="form-control mchWeekdayEnd" placeholder="结束时间" required>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-					               	 联系电话：
-					            </span>
-                                <div class="form-group">
-                                    <input type="text" name="mchTelephone" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-					               	 营业时间：
-					            </span>
-                                <div class="form-group">
-                                    <input type="text" name="mchTelephone" class="form-control">
+                            <div class="col-sm-5">
+                                <div class="input-group">
+                                    <span class="input-group-addon">周末</span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchWeekendBegin" class="form-control mchWeekendBegin" placeholder="开始时间" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="mchWeekendEnd" class="form-control mchWeekendEnd" placeholder="结束时间" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>

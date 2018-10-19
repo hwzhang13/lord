@@ -22,4 +22,6 @@ public interface MerchantCouponService extends IService<MerchantCoupon> {
     List<MerchantCoupon> findMerchantCouponByMchId(Long mchId);
 
     void modifyMerchantCoupon(MerchantCoupon merchantCoupon);
+
+    void addMerchantCoupon(MerchantCoupon merchantCoupon);
 }

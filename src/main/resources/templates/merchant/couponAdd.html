@@ -1,0 +1,121 @@
+<div class="modal fade" id="coupon-add" data-keyboard="false" data-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <form id="coupon-add-form" class="form-inline">
+                    <div class="container">
+                        <h4 class="col-sm-12">基本信息</h3>
+                        <input type="text" name="mchId" class="mchId" style="display: none">
+                        <input type="text" name="couponId" class="couponId" style="display: none">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         商户名称：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchName" class="form-control mchName" required readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         优惠类型：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="couponType" style="display: none">
+                                        <input type="text" class="form-control couponType" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         优惠金额：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="couponAmount" class="form-control couponAmount" required placeholder="元">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         有效期：
+                                    </span>
+                                    <span class="input-group-addon">起始</span>
+                                    <div class="form-group">
+                                        <input type="text" name="couponTimeBegin" class="form-control couponTimeBegin" placeholder="开始时间" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="input-group">
+                                    <span class="input-group-addon">结束</span>
+                                    <div class="form-group">
+                                        <input type="text" name="couponTimeEnd" class="form-control couponTimeEnd" placeholder="结束时间" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="col-sm-12" style="border-top:1px solid #eee;"></p>
+                        <h4 class="col-sm-12">使用信息</h4>
+  
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         使用条件：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="couponUsageAmount" class="form-control couponUsageAmount" required placeholder="单笔支付多少元以上">
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         支付方式：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control couponPaymentTypeName" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         优惠券领取二维码：
+                                    </span>
+                                    <div class="form-group">
+                                        <div style="border:1px solid #aaa;width: 60px;min-height:60px;position: relative;">
+                                            <img onclick="addImgClick(event)" class="couponQrCode" data-th-src="@{img/add.png}" style="width: 100%;float: left;">
+                                            <input onchange="addImgShow(event)" type="file" style="display: none;" accept="image/*">
+                                            <input type="text" name="couponQrCode" style="display: none;" class="couponQrCode" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-save" id="coupon-add-button" name="save">保存</button>
+                <button type="button" class="btn btn-secondary btn-close">关闭</button>
+                <button class="btn-hide"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-src="@{js/app/merchant/couponAdd.js}"></script>

@@ -60,7 +60,12 @@ public class MerchantController extends BaseController {
     @ResponseBody
     public Map<String, Object> merchantList(QueryRequest request, Merchant merchant){
         PageHelper.startPage(request.getPageNum(), request.getPageSize());
-        List<MerchantVo> list = this.merchantService.findMerchantList(merchant, request);
+        List<MerchantVo> list=null;
+        try {
+            list = this.merchantService.findMerchantList(merchant, request);
+        }catch (Exception e){
+            log.error("error",e.getMessage());
+        }
         PageInfo<MerchantVo> pageInfo = new PageInfo<>(list);
         return getDataTable(pageInfo);
     }

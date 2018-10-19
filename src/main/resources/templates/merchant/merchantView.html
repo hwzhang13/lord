@@ -1,0 +1,227 @@
+<style type="text/css">
+    .form-inline .custom-radio .custom-control-indicator:before{
+        left: 4px;
+        top: 5px;
+    }
+</style>
+<div class="modal fade" id="merchant-view" data-keyboard="false" data-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <form id="merchant-view-form" class="form-inline">
+                    <div class="container">
+                        <h4 class="col-sm-12">基本信息</h3>
+                        <input type="text" name="mchId" class="mchId" style="display: none">
+                            
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+    					               	 商户名称：
+    					            </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchName" class="form-control mchName" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         联系人：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchContacts" class="form-control mchContacts" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         联系电话：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchContactsTelephone" class="form-control mchContactsTelephone" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+    					               	 营业执照：
+    					            </span>
+                                    <div class="form-group">
+                                        <img class="mchBusinesslicence" src="" style="width: 60px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         营业执照号：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchBusinesslicenceNumbe" class="form-control mchBusinesslicenceNumbe" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="col-sm-12" style="border-top:1px solid #eee;"></p>
+                        <h4 class="col-sm-12">店铺信息</h4>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         商户图片：
+                                    </span>
+                                    <div class="form-group">
+                                        <img class="mchImg" src="" style="width: 60px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         地址图片：
+                                    </span>
+                                    <div class="form-group">
+                                        <img class="mchMap" src="" style="width: 60px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         商户地址：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchAddress" class="form-control mchAddress" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         类别：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchType" class="form-control mchType" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         标签：
+                                    </span>
+                                    <div class="form-group checkbox-content">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         人均消费：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchPerCapitaConsume" class="form-control mchPerCapitaConsume" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         商户电话：
+                                    </span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchTelephone" class="form-control mchTelephone" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                         营业时间：
+                                    </span>
+                                    <span class="input-group-addon">工作日</span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchWeekdayBegin" class="form-control mchWeekdayBegin-v" placeholder="开始时间" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="mchWeekdayEnd" class="form-control mchWeekdayEnd-v" placeholder="结束时间" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="input-group">
+                                    <span class="input-group-addon">周末</span>
+                                    <div class="form-group">
+                                        <input type="text" name="mchWeekendBegin" class="form-control mchWeekendBegin-v" placeholder="开始时间" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="mchWeekendEnd" class="form-control mchWeekendEnd-v" placeholder="结束时间" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="col-sm-12" style="border-top:1px solid #eee;"></p>
+
+                        <div class="row">
+                            <span class="input-group-addon col-sm-2 jieguo" style="font-weight:bold;font-size:14px;">
+
+                            </span>
+                        </div>
+                        <div class="row review" >
+                            <div class="col-sm-12">
+                                <div class="input-group" style="margin-top:10px;">
+                                    <span class="input-group-addon">
+                                        
+                                     </span>
+                                    <div class="form-group">
+                                        <label class="custom-control custom-radio">
+                                            <input name="mchStatusRadios" type="radio" value="2" class="custom-control-input" checked>
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">未通过</span>
+                                        </label>
+                                        <label class="custom-control custom-radio">
+                                            <input name="mchStatusRadios" type="radio" value="1" class="custom-control-input">
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">通过</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row reason">
+                            <span class="input-group-addon col-sm-2">
+                                 未通过原因：
+                            </span>
+                            <textarea class="col-sm-10 mchComments" rows="3"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-save" id="merchant-view-button" name="save">保存</button>
+                <button type="button" class="btn btn-secondary btn-close">关闭</button>
+                <button class="btn-hide"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-src="@{js/app/merchant/merchantView.js}"></script>

@@ -26,9 +26,11 @@ public class MchLabelServiceImpl extends BaseService<MchLabel> implements MchLab
 
     @Override
     public void addMchLabel(MchLabel mchLabel) {
+        log.info("addMchLabel:"+mchLabel.getLabelId());
         try {
-            this.mchLabelMapper.insertSelective(mchLabel);
+            this.mchLabelMapper.insertMchLabel(mchLabel);
         }catch (Exception e){
+            e.printStackTrace();
             log.error("error",e.getMessage());
         }
     }

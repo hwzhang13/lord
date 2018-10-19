@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -98,6 +99,18 @@ public class MerchantCouponServiceImpl extends BaseService<MerchantCoupon> imple
         try {
             this.merchantCouponMapper.updateByPrimaryKeySelective(merchantCoupon);
         }catch (Exception e){
+            e.printStackTrace();
+            log.error("error", e);
+        }
+    }
+
+    @Override
+    public void addMerchantCoupon(MerchantCoupon merchantCoupon) {
+        try {
+            merchantCoupon.setCouponCreateDate(new Date());
+            this.merchantCouponMapper.insertSelective(merchantCoupon);
+        }catch (Exception e){
+            e.printStackTrace();
             log.error("error", e);
         }
     }

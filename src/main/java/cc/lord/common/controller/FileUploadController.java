@@ -42,7 +42,7 @@ public class FileUploadController {
         System.out.println(path);
         request.setAttribute("imagesPath", pathRoot+path);
         Map result=new HashMap();
-        result.put("img","http://localhost:8080/"+path);
+        result.put("img","http://192.168.31.5:8080/"+path);
         return ResponseBo.ok(result);
     }
 }

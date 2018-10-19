@@ -1,5 +1,6 @@
 package com.lord.test;
 
+import cc.lord.merchant.domain.MchLabel;
 import org.junit.Test;
 
 public class TestDemo {
@@ -11,5 +12,13 @@ public class TestDemo {
 
         System.out.println(a&=(a-1));
         System.out.println(3^4);
+    }
+
+    @Test
+    public void demo(){
+        String[] labels="123,123".split(",");
+        for (String str:labels) {
+            System.out.println(str);
+        }
     }
 }

@@ -54,7 +54,7 @@ public class CouponTask {
                 continue;
             }
 
-            if (merchantCoupon.getCouponTimeEnd().getTime()<=new Date().getTime()){
+            /*if (merchantCoupon.getCouponTimeEnd().getTime()<=new Date().getTime()){
                 log.info("执行优惠过期任务:当前优惠券已过期");
                 try {
                     merchantCoupon.setCouponExpire(EXPIRE);
@@ -65,7 +65,7 @@ public class CouponTask {
                     continue;
                 }
                 continue;
-            }
+            }*/
         }
         log.info("执行优惠过期任务:任务结束");
     }
